@@ -1,0 +1,201 @@
+<!--本例中图片ul必须用div装起来,因为必须给ul设置绝对定位 则会导致ul浮动而其他元素错乱-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.nav{
+				width: 140px;
+				height: 500px;
+				position: fixed;
+				margin-left:100px;
+			}
+			.nav li{
+				font-size: 20px;
+				text-align: center;
+				line-height: 70px;
+			}
+			.nav img{
+				width: 140px;
+				height: 30px;
+			}
+			ul a{
+				display: inline-block;
+				width: 120px;
+				height: 60px;
+				text-decoration: none;
+				color:#0e0c0c;
+				margin-top:10px;
+				line-height: 60px;
+			}
+			a:hover{
+				background-color:#EC4040;
+				border-radius: 10px;
+				color:#FEFEFE;
+			}
+			.news{
+				width: 650px;
+				height: 310px;
+				margin-left: 250px;
+				position: relative;
+				overflow: hidden;
+			}
+			.photobox{
+				width: 560px;
+				height: 310px;
+				float: left;
+			}
+			.photo{
+				position:absolute;
+				
+			}
+			img{
+				width: 560px;
+				height: 310px;
+				vertical-align: bottom;
+			}
+			.span{
+				width:80px;
+				height: 310px;
+				background-color: #0E0C0C;
+				display: inline-block;
+			}
+			.span span{
+				display: inline-block;
+				width:80px;
+				height: 60px;
+				text-align: center;
+				line-height: 60px;
+				font-size:15pt;
+				color:white;
+				margin-top:15px;
+			}
+			.changecolor{
+				background-color: #EC4040;
+				border-radius:25px;
+			}
+			/*第三个盒子*/
+			.bignews{
+				margin-left:250px;
+				margin-top: 80px;
+				border-bottom: 1px solid;
+			}
+			.bignews img{
+				width: 180px;
+				height: 120px;
+			}
+		</style>
+	</head>
+	<body >
+		<div class="all">
+			<div class="nav">
+				<div class="img">
+					<img src="img/header.png" alt="" />
+				</div>
+				<ul>
+					<li><a href="">娱乐</a></li>
+					<li><a href="">体育</a></li>
+					<li><a href="">热点</a></li>
+					<li><a href="">汽车</a></li>
+					<li><a href="">搞笑</a></li>
+				</ul>
+			</div>
+			
+			<div class="news" id="news">
+				<div class="photobox">
+					<div class="photo"><a href=""><img src="img/1.jpg" alt="" /></a></div>
+					<div class="photo"><a href=""><img src="img/2.jpg" alt="" /></a></div>
+					<div class="photo"><a href=""><img src="img/3.jpg" alt="" /></a></div>
+					<div class="photo"><a href=""><img src="img/4.jpg" alt="" /></a></div>
+				</div>
+				<div class="span">
+					<span class="changecolor">娱乐</span>
+					<span>明星</span>
+					<span>生活</span>
+					<span>军事</span>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			
+			<div class="bignews">
+				<div class="img">
+					<img src="img/cp.jpg" alt="" />
+				</div>
+				<div class="content">
+					<h1>英法</h1>
+					<div class="bottom">
+						<a href=""></a>
+						<span>1万评论</span>
+						<span>6分钟前</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+	</body>
+	<script src ="js/animate.js"></script>
+	<script type="text/javascript">
+		
+		var news = document.getElementById("news");
+		var photos =  news.children[0].children;
+		var spans = news.children[1].children;
+		var timer = null;
+//		先拿到盒子高度,即要走长度
+		var height = news.clientHeight;
+//		先让除第一个盒子外其他盒子都接在第一个后面
+		for(var i = 1 ;i<photos.length;i++){
+			photos[i].style.top = height+"px";
+		}
+//		关键:用now表示当前照片序号
+		var now = 0;
+		//设置小方块改变 也是根据now的值
+		function setSquare(){
+			for(var k in spans){
+				spans[k].className = "";
+			}
+				spans[now].className="changecolor";//小方块颜色的改变也是根据now
+		}
+		for(var j in spans){
+			spans[j].index = j; 
+			spans[j].onmouseover = function(){
+				if(now < this.index){
+					animate(photos[now],{top:-height});
+					photos[this.index].top = height +"px"; //此处不能用animate（）函数
+				}else{
+					animate(photos[now],{top:height});
+					photos[this.index].top = -height + "px"
+				}
+					now =this.index;
+					animate(photos[now],{top:0});
+					setSquare();
+			}
+		}
+		
+		timer = setInterval(autoplay,2000);
+   		function autoplay(){
+   			animate(photos[now],{top:-height});
+   			now++;
+   			now=now>photos.length-1?0:now;
+   			photos[now].style.top=height +"px";
+   			animate(photos[now],{top:0});
+   			setSquare();
+   		}	
+		
+		news.onmouseover  = function(){
+			clearInterval(timer);
+		}
+		news.onmouseout = function(){
+			clearInterval(timer);
+			timer = setInterval(autoplay,3000);
+		}
+		
+	</script>
+</html>
+>
