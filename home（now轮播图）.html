@@ -4,17 +4,20 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<style type="text/css">
 			ul{
 				margin: 0;
 				padding: 0;
 				list-style: none;
 			}
+			.all{
+				position: relative;
+			}
 			.nav{
-				width: 140px;
-				height: 500px;
+				width: 100px;
 				position: fixed;
-				margin-left:100px;
+				margin-left:150px;
 			}
 			.nav li{
 				font-size: 20px;
@@ -22,7 +25,7 @@
 				line-height: 70px;
 			}
 			.nav img{
-				width: 140px;
+				width: 100px;
 				height: 30px;
 			}
 			ul a{
@@ -34,15 +37,16 @@
 				margin-top:10px;
 				line-height: 60px;
 			}
-			a:hover{
+			.nav a:hover{
 				background-color:#EC4040;
 				border-radius: 10px;
 				color:#FEFEFE;
 			}
+			/*第二个盒子*/
 			.news{
 				width: 650px;
 				height: 310px;
-				margin-left: 250px;
+				margin-left: 300px;
 				position: relative;
 				overflow: hidden;
 			}
@@ -53,7 +57,6 @@
 			}
 			.photo{
 				position:absolute;
-				
 			}
 			img{
 				width: 560px;
@@ -78,33 +81,100 @@
 			}
 			.changecolor{
 				background-color: #EC4040;
-				border-radius:25px;
+				border-radius:15px;
 			}
 			/*第三个盒子*/
+			.inread{
+				width: 650px;
+				height: 40px;
+				background-color:#78B1F5;
+				margin-top:15px;
+				margin-left:300px;
+				line-height: 40px;
+				text-align:center;
+				font:15px  ;
+				font-family:"微软雅黑" ;
+				color: white;
+			}
+			/*第四个盒子*/
+			.xinwen{
+				width: 650px;
+				height: 1800px;
+				margin-left:300px;
+				position: relative;
+				margin-top:10px;
+			}
 			.bignews{
-				margin-left:250px;
-				margin-top: 80px;
-				border-bottom: 1px solid;
+				width: 650px;
+				height: 150px;
+				margin-top: 10px;
+				border-bottom:grey 1px solid;
+				padding-bottom:15px;
+			}
+			.bignews .img{
+				width: 180px;
+				height: 120px;
 			}
 			.bignews img{
 				width: 180px;
 				height: 120px;
 			}
+			.img,.content{
+				display: inline-block;
+			}
+			.content{
+				vertical-align: top;
+				width: 465px;
+				height: 120px;
+			}
+			.bottom span{
+				color:#777;
+				font-size:14px;
+			}
+			.content a{
+				text-decoration: none;
+				color: black;
+			}
+			.comment:hover{
+				color:red;
+			}
+			/*搜索框*/
+			.input-group{
+				top:20px;
+				left:980px;
+				position: absolute;
+				width: 350px;
+				height: 50px;
+			}
+			.form-control{
+				width: 260px;
+				height: 50px;
+			}
+			.input-group-addon{
+				width:80px;
+				background-color:#559EDA;
+				color:white;
+				border: none;
+			}
+			
+    			
 		</style>
 	</head>
 	<body >
 		<div class="all">
-			<div class="nav">
-				<div class="img">
-					<img src="img/header.png" alt="" />
+			<div class="v_nav">
+				<div class="nav">
+					<div class="img">
+						<img src="img/header.png" alt="" />
+					</div>
+					<ul>
+						<li><a href="">娱乐</a></li>
+						<li><a href="">体育</a></li>
+						<li><a href="">热点</a></li>
+						<li><a href="">汽车</a></li>
+						<li><a href="">搞笑</a></li>
+					</ul>
 				</div>
-				<ul>
-					<li><a href="">娱乐</a></li>
-					<li><a href="">体育</a></li>
-					<li><a href="">热点</a></li>
-					<li><a href="">汽车</a></li>
-					<li><a href="">搞笑</a></li>
-				</ul>
 			</div>
 			
 			<div class="news" id="news">
@@ -120,20 +190,55 @@
 					<span>生活</span>
 					<span>军事</span>
 				</div>
-				<div class="clearfix"></div>
 			</div>
 			
-			<div class="bignews">
-				<div class="img">
-					<img src="img/cp.jpg" alt="" />
-				</div>
-				<div class="content">
-					<h1>英法</h1>
-					<div class="bottom">
-						<a href=""></a>
-						<span>1万评论</span>
-						<span>6分钟前</span>
+			<div class="inread" id="inread">
+				为您推荐了6篇文章
+			</div>
+			
+			<div class="xinwen">
+				<div class="bignews">
+					<div class="img">
+						<img src="img/cp.jpg" alt="" />
 					</div>
+					<div class="content">
+						<a href=""><h2>特朗普：大马士传爆炸声，多个军事基地</h2></a>
+						<div class="bottom">
+							<a href=""><span class="comment">1万评论</span></a>
+							<span>6分钟前</span>
+						</div>
+					</div>
+				</div>
+				<div class="bignews">
+					<div class="img">
+						<img src="img/cp.jpg" alt="" />
+					</div>
+					<div class="content">
+						<a href=""><h2>特朗普：大马士传爆炸声，多个军事基地</h2></a>
+						<div class="bottom">
+							<a href=""><span class="comment">1万评论</span></a>
+							<span>6分钟前</span>
+						</div>
+					</div>
+				</div>
+				<div class="bignews">
+					<div class="img">
+						<img src="img/cp.jpg" alt="" />
+					</div>
+					<div class="content">
+						<a href=""><h2>特朗普：大马士传爆炸声，多个军事基地</h2></a>
+						<div class="bottom">
+							<a href=""><span class="comment">1万评论</span></a>
+							<span>6分钟前</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="search">
+				<div class="input-group ">
+				  <input type="text" class="form-control" placeholder="请输入要搜索的内容" aria-describedby="basic-addon2">
+				  <span class="input-group-addon" id="basic-addon2">搜索</span>
 				</div>
 			</div>
 		</div>
@@ -196,6 +301,11 @@
 			timer = setInterval(autoplay,3000);
 		}
 		
+		
+		var inread = document.getElementById("inread");
+		var time = setTimeout(function(){
+			animate(inread,{height:0})
+		},3000)
 	</script>
 </html>
->
+
